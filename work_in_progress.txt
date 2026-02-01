@@ -1,0 +1,7 @@
+Izveidota pamata projekta struktūra
+
+Notestēts API pieslēgums un saņemtās atbildes
+
+Uzstādīta PostgreSQL datubāze un izveidota sākotnējā tabula
+
+Izveidots pamata router

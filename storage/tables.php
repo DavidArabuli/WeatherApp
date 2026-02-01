@@ -1,0 +1,8 @@
+CREATE TABLE cities (
+id SERIAL PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+country_code CHAR(2),
+latitude DECIMAL(8,5) NOT NULL,
+longitude DECIMAL(8,5) NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

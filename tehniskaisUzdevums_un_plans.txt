@@ -1,0 +1,72 @@
+Uzdevums:
+
+"Valoda & framework:
+React vai PHP
+Dokumentāciju un API atslēgu var iegūt šeit: https://openweathermap.org
+
+Izmantojot doto API - 
+1) vislabākajā un lietotājam draudzīgākajā veidā parādīt pašreizējos laikapstākļus dažās pilsētās (skatā vismaz 10) visā pasaulē.
+
+
+2) Lietotājam jābūt arī iespējai izvēlēties un padziļināti redzēt statistiku par pilsētas laikapstākļiem (temperatūra, vējš, lietus, mākoņi utt.).
+3) Lietotājam jādod arī iespēja pārslēgties starp vienībām, ko piedāvā dotais API.
+4) Bonusa uzdevums: Parādīto pilsētu sarakstu ņemt no vienkāršas PostgreSQL datubāzes. 
+4.2) Jānodrošina iespēja pievienot un dzēst pilsētas no šī saraksta.
+5) Vēlams padarīt to vizuāli pievilcīgu!
+ 
+
+
+Koda nodošana:
+6) Github
+
+Bonuss:
+7) Būtu labi, ja projekts būtu pieejams ar publisku URL
+
+8) Aplikācija palaista ar Docker compose
+
+React Router v7 kā fullstack framework"
+
+
+=========================================================================
+
+Plans:
+
+Izvēloties PHP un PostgreSQL kā pamatu, izveidot tīmekļa aplikāciju ar vienkāršotu MVC arhitektūru.
+
+Controller - atbildēs par lietotāja pieprasījumu apstrādi un datu sagatavošanu skatam.
+
+Model - nodrošinās darbu ar PostgreSQL datubāzi (pilsētu saraksts).
+
+View - lietotāja interfeiss (galvenā lapa ar pilsētu laikapstākļiem un detalizēts skats).
+
+Papildus: serviss API darbam.
+
+0) Iepazīties ar OpenWeatherMap API dokumentāciju, notestēt API atslēgu un savienojumu ar API.
+
+1) Izveidot galveno lapu, kurā tiek attēloti laikapstākļi vismaz 10 pilsētām visā pasaulē (sākotnēji "hardcoded").
+
+2) Dot iespēju lietotājam apskatīt padziļinātu informāciju par konkrētas pilsētas laikapstākļiem, realizējot to:
+
+- vai nu kā atsevišķu lapu,
+
+- vai kā izvēršamu skatu, nospiežot uz pilsētas.
+
+3) Ieviest iespēju pārslēgties starp mērvienībām, izmantojot vienkāršu “toggle” pogu.
+
+4) Uzstādīt un konfigurēt PostgreSQL, izveidot sākotnējo datubāzes tabulu pilsētu sarakstam.
+
+4.2) Dot iespēju:
+
+pievienot jaunas pilsētas,
+
+dzēst esošās pilsētas no saraksta.
+
+Datubāzē tiks glabāta tikai minimāli nepieciešamā informācija (piemēram, pilsētas nosaukums, valsts kods, ģeogrāfiskais platums un garums), lai pēc tam varētu dinamiski iegūt aktuālos laikapstākļu datus no API.
+
+5) Pievienot CSS stilus, lai aplikācija būtu vizuāli pievilcīga.
+
+6) GitHub repozitorijs + readme.
+
+7) Aplikāciju izvietot uz publiski pieejama VPS hostinga, nodrošinot piekļuvi caur publisku URL. 
+
+8) Sagatavot Docker Compose konfigurāciju ar PHP un PostgreSQL servisiem.
