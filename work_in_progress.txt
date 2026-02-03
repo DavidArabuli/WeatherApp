@@ -5,3 +5,12 @@ Notestēts API pieslēgums un saņemtās atbildes
 Uzstādīta PostgreSQL datubāze un izveidota sākotnējā tabula
 
 Izveidots pamata router
+
+Izveidotas Database (PDO savienojums) un City modeļa klases.
+
+Uzlabots Router - maršruti atbalsta parametrus; 
+
+CityController apstrādā $_POST datus un sagaida pilsētas nosaukumu.
+
+Izveidota atsevišķa pilsētas lapa (view) ar saitēm no mājaslapas.
+

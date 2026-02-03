@@ -15,10 +15,13 @@ var_dump($cities);
 
 <body>
     <?php foreach ($cities as $city): ?>
-        <h2><?= htmlspecialchars($city) ?></h2>
+        <br>
+        <a href="/cities/<?= urlencode($city) ?>">
+            <?= htmlspecialchars($city) ?>
+
+        </a>
     <?php endforeach; ?>
 
-    <?php require __DIR__ . '/../src/WeatherApiService.php'; ?>
 </body>
 
 </html>
