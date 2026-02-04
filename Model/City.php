@@ -2,7 +2,7 @@
 
 class City
 {
-    private $pdo;
+    private PDO $pdo;
 
     public function __construct(PDO $pdo)
     {
@@ -11,33 +11,39 @@ class City
 
     public function getAllCities(): array
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM cities");
-        $stmt->execute();
+        $stmt = $this->pdo->query("SELECT * FROM cities ORDER BY name");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function getCityByName(string $name): ?array
+
+    public function getCityById(int $id): ?array
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM cities WHERE name = :name");
-        $stmt->bindParam(':name', $name);
-        $stmt->execute();
+        $stmt = $this->pdo->prepare(
+            "SELECT * FROM cities WHERE id = :id"
+        );
+        $stmt->execute(['id' => $id]);
+
         $city = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $city ?: ['name' => 'City not found'];
+
+        return $city ?: null;
     }
 
-    public function addCity(string $name): ?array
+    public function addCity(string $name): int
     {
-        $stmt = $this->pdo->prepare("INSERT INTO cities (name) VALUES (:name)");
-        $stmt->bindParam(':name', $name);
-        $stmt->execute();
-        $city = $this->getCityByName($name);
-        return $city;
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO cities (name) VALUES (:name)"
+        );
+        $stmt->execute(['name' => $name]);
+
+        return (int) $this->pdo->lastInsertId();
     }
 
-    public function deleteCity(string $name): ?array
+    public function deleteCityById(int $id): bool
     {
-        $stmt = $this->pdo->prepare("DELETE FROM cities WHERE name = :name");
-        $stmt->bindParam(':name', $name);
-        $stmt->execute();
-        return ['name' => $name, 'deleted' => true];
+        $stmt = $this->pdo->prepare(
+            "DELETE FROM cities WHERE id = :id"
+        );
+        $stmt->execute(['id' => $id]);
+
+        return $stmt->rowCount() > 0;
     }
 }

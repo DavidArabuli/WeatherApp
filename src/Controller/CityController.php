@@ -10,16 +10,18 @@ class CityController
         $this->cityModel = $cityModel;
         $this->weatherService = $weatherService;
     }
+
     public function index()
     {
         $cities = $this->cityModel->getAllCities();
         require __DIR__ . '/../../views/cities.php';
     }
 
-    public function show(string $cityName)
+    public function show(int $id)
     {
         $unit = $_GET['unit'] ?? 'metric';
-        $city = $this->cityModel->getCityByName($cityName);
+
+        $city = $this->cityModel->getCityById($id);
         if (!$city) {
             http_response_code(404);
             echo "City not found.";
@@ -27,40 +29,42 @@ class CityController
         }
 
         try {
-            $weather = $this->weatherService->getWeatherByCityName($cityName, $unit);
+            $weather = $this->weatherService->getWeatherByCityName(
+                $city['name'],
+                $unit
+            );
         } catch (Exception $e) {
             http_response_code(500);
             echo "Error fetching weather data: " . $e->getMessage();
             return;
         }
 
-        $title = "Weather in " . ucfirst($cityName);
+        $title = "Weather in " . $city['name'];
         $longitude = $city['longitude'] ?? 'N/A';
+
         require __DIR__ . '/../../views/city.php';
     }
+
     public function store()
     {
-        $cityName = $_POST['cityName'] ?? '';
+        $cityName = trim($_POST['cityName'] ?? '');
 
-        if (!$cityName) {
+        if ($cityName === '') {
             http_response_code(400);
             echo "City name is required.";
             return;
         }
-        $city = $this->cityModel->addCity($cityName);
 
-        echo "Adding city to the list: " . $cityName;
+        $this->cityModel->addCity($cityName);
+
         header('Location: /');
         exit;
     }
-    public function destroy($cityName)
-    {
-        $this->cityModel->deleteCity($cityName);
 
-        echo json_encode([
-            'status' => 'ok',
-            'deleted' => $cityName
-        ]);
+    public function destroy(int $id)
+    {
+        $this->cityModel->deleteCityById($id);
+
         header('Location: /');
         exit;
     }

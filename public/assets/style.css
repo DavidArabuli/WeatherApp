@@ -1,16 +1,25 @@
 /* General */
 body {
     font-family: sans-serif;
-    padding: 20px;
+    padding: 2rem;
 }
 
 /* City list */
+
+/* .cities{
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+} */
 .city-row {
-    margin-bottom: 8px;
+    margin-bottom: 1rem;
+    /* display: flex;
+    gap: 5rem;
+    justify-content: space-between;; */
 }
 
 .city-row a {
-    margin-right: 10px;
+    margin-right: 1rem;
     text-decoration: none;
     color: #0066cc;
 }
@@ -28,7 +37,7 @@ body {
     background: #e74c3c;
     color: #fff;
     border: none;
-    padding: 4px 8px;
+    padding: 0.5rem 0.5rem;
     cursor: pointer;
 }
 
@@ -38,29 +47,29 @@ body {
 
 /* Add city */
 .add-city-form {
-    margin-top: 16px;
+    margin-top: 1rem;
 }
 
 .add-city-form input {
-    padding: 6px;
+    padding: 0.5rem;
 }
 
 .add-city-form button {
-    padding: 6px 10px;
+    padding: 0.5rem 0.5rem;
 }
 
 /* Unit toggle */
 .unit-toggle {
     display: inline-flex;
     border: 1px solid #ccc;
-    border-radius: 6px;
+    border-radius: 1rem;
     overflow: hidden;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 }
 
 .unit-toggle a {
     text-decoration: none;
-    padding: 8px 16px;
+    padding: 0.5rem 0.5rem;
     color: #333;
     background-color: #f0f0f0;
     transition: background-color 0.2s;

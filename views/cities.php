@@ -15,20 +15,23 @@ $currentUnit = $_GET['unit'] ?? 'metric';
 
 <body>
 
+    <!-- Unit toggle -->
     <div class="unit-toggle">
         <a href="?unit=metric" class="<?= $currentUnit === 'metric' ? 'active' : '' ?>">°C</a>
         <a href="?unit=imperial" class="<?= $currentUnit === 'imperial' ? 'active' : '' ?>">°F</a>
     </div>
 
+    <!-- Cities list -->
     <div class="cities">
         <?php foreach ($cities as $city): ?>
             <div class="city-row">
-                <a href="/cities/<?= urlencode($city['name']) ?>?unit=<?= $currentUnit ?>">
+                <a href="/cities/<?= $city['id'] ?>?unit=<?= $currentUnit ?>">
                     <?= htmlspecialchars($city['name']) ?>
                 </a>
 
+                <!-- Delete button -->
                 <form
-                    action="/cities/<?= urlencode($city['name']) ?>/delete"
+                    action="/cities/<?= $city['id'] ?>/delete"
                     method="post"
                     class="delete-form">
                     <button
@@ -41,6 +44,7 @@ $currentUnit = $_GET['unit'] ?? 'metric';
         <?php endforeach; ?>
     </div>
 
+    <!-- Add city form -->
     <form action="/cities" method="post" class="add-city-form">
         <input type="text" name="cityName" placeholder="City Name" required>
         <button type="submit">Add City</button>

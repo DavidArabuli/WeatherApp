@@ -14,9 +14,9 @@ $router = new Router();
 $controller = new CityController($cityModel, $weatherService);
 
 $router->get('/', [$controller, 'index']);
-$router->get('/cities/{cityName}', [$controller, 'show']);
+$router->get('/cities/{id}', [$controller, 'show']);
 $router->post('/cities', [$controller, 'store']);
-$router->post('/cities/{cityName}/delete', [$controller, 'destroy']);
+$router->post('/cities/{id}/delete', [$controller, 'destroy']);
 
 $router->dispatch($_SERVER['REQUEST_URI']);
 

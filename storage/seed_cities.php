@@ -15,19 +15,17 @@ $cities = [
     ['Paris',],
     ['London',],
     ['Rome',],
+    ['New York',],
 ];
 
 $stmt = $pdo->prepare(
-    "INSERT INTO cities (name, country_code, latitude, longitude)
-     VALUES (:name, :country, :lat, :lng)"
+    "INSERT INTO cities (name)
+     VALUES (:name)"
 );
 
-foreach ($cities as [$name, $country, $lat, $lng]) {
+foreach ($cities as [$name, $country]) {
     $stmt->execute([
         ':name'    => $name,
-        ':country' => $country,
-        ':lat'     => $lat,
-        ':lng'     => $lng,
     ]);
 }
 
