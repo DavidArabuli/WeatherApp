@@ -26,19 +26,18 @@ class WeatherApiService
 
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        // unset($ch);
 
         if ($response === false) {
-            throw new Exception('cURL error: ' . curl_error($ch));
+            return ['error' => 'Unable to connect to the weather service.'];
         }
 
         $data = json_decode($response, true);
 
-
         if ($httpCode !== 200) {
-
-            $message = $data['message'] ?? 'Unknown error';
-            throw new Exception("OpenWeatherMap API error ({$httpCode}): {$message}");
+            if ($httpCode === 404) {
+                throw new Exception("City '{$cityName}' not found. Please check spelling.");
+            }
+            throw new Exception($data['message'] ?? 'Unknown weather service error.');
         }
 
 

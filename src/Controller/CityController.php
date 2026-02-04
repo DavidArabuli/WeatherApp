@@ -20,28 +20,28 @@ class CityController
     public function show(int $id)
     {
         $unit = $_GET['unit'] ?? 'metric';
-
+        //  invalid unit values check
+        if (!in_array($unit, ['metric', 'imperial'])) {
+            $unit = 'metric';
+        }
         $city = $this->cityModel->getCityById($id);
+
         if (!$city) {
             http_response_code(404);
-            echo "City not found.";
+            echo "City not found in the database.";
             return;
         }
 
-        try {
-            $weather = $this->weatherService->getWeatherByCityName(
-                $city['name'],
-                $unit
-            );
-        } catch (Exception $e) {
-            http_response_code(500);
-            echo "Error fetching weather data: " . $e->getMessage();
+        $weather = $this->weatherService->getWeatherByCityName($city['name'], $unit);
+
+        if (isset($weather['error'])) {
+
+            $title = "Weather in " . htmlspecialchars($city['name']);
+            require __DIR__ . '/../../views/weather-error.php';
             return;
         }
 
-        $title = "Weather in " . $city['name'];
-        $longitude = $city['longitude'] ?? 'N/A';
-
+        $title = "Weather in " . htmlspecialchars($city['name']);
         require __DIR__ . '/../../views/city.php';
     }
 
@@ -49,14 +49,31 @@ class CityController
     {
         $cityName = trim($_POST['cityName'] ?? '');
 
+        // name required check
         if ($cityName === '') {
-            http_response_code(400);
-            echo "City name is required.";
+            $errorMessage = "City name is required.";
+            require __DIR__ . '/../../views/weather-error.php';
             return;
         }
 
-        $this->cityModel->addCity($cityName);
+        // Format check
+        if (!preg_match('/^[a-zA-Z\s\-]{1,100}$/', $cityName)) {
+            $errorMessage = "Invalid city name. Use letters, spaces or hyphens only.";
+            require __DIR__ . '/../../views/weather-error.php';
+            return;
+        }
 
+        // checking if city exists in API
+        try {
+            $this->weatherService->getWeatherByCityName($cityName);
+        } catch (Exception $e) {
+            $errorMessage = $e->getMessage();
+            require __DIR__ . '/../../views/weather-error.php';
+            return;
+        }
+
+
+        $this->cityModel->addCity($cityName);
         header('Location: /');
         exit;
     }

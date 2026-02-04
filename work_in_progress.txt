@@ -31,3 +31,15 @@ Ieviesta iespēja pārslēgt mērvienības (metric / imperial).
 Izveidots atsevišķs CSS fails.
 
 Realizēta iespēja pievienot un dzēst pilsētas gan no saraksta, gan no datubāzes.
+
+--
+
+Ieviesta input validācija
+
+Izveidots lietotājam draudzīgs kļūdu paziņojumu skats
+
+Maršruti izmanto pilsētu ID, nevis pilsētu nosaukumus URL adresēs
+
+Aplikācija vairs neļauj saglabāt datubāzē neeksistējošas pilsētas
+
+Docker + Nginx boilerplate

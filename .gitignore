@@ -1,4 +1,4 @@
 .env
 env.php
-
+.env.docker
 vendor/
