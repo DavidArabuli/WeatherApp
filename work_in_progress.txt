@@ -6,6 +6,7 @@ Uzstādīta PostgreSQL datubāze un izveidota sākotnējā tabula
 
 Izveidots pamata router
 
+--
 Izveidotas Database (PDO savienojums) un City modeļa klases.
 
 Uzlabots Router - maršruti atbalsta parametrus; 
@@ -14,3 +15,19 @@ CityController apstrādā $_POST datus un sagaida pilsētas nosaukumu.
 
 Izveidota atsevišķa pilsētas lapa (view) ar saitēm no mājaslapas.
 
+--
+Izveidots neliels seeder fails, kas ievieto 10 pilsētas datubāzē (development/setup palīgrīks).
+
+Izveidota WeatherApiService klase, kas strādā ar API un atgriež detalizētus laikapstākļu datus.
+
+CityModel paplašināts ar pamata metodēm (pievienot, dzēst).
+
+index.php papildināts, lai tas darbotos kā aplikācijas bootstrap fails.
+
+Realizētas visas pamata CityController metodes.
+
+Ieviesta iespēja pārslēgt mērvienības (metric / imperial).
+
+Izveidots atsevišķs CSS fails.
+
+Realizēta iespēja pievienot un dzēst pilsētas gan no saraksta, gan no datubāzes.

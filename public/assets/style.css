@@ -1,0 +1,76 @@
+/* General */
+body {
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+/* City list */
+.city-row {
+    margin-bottom: 8px;
+}
+
+.city-row a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #0066cc;
+}
+
+.city-row a:hover {
+    text-decoration: underline;
+}
+
+/* Delete form */
+.delete-form {
+    display: inline;
+}
+
+.delete-form button {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.delete-form button:hover {
+    background: #c0392b;
+}
+
+/* Add city */
+.add-city-form {
+    margin-top: 16px;
+}
+
+.add-city-form input {
+    padding: 6px;
+}
+
+.add-city-form button {
+    padding: 6px 10px;
+}
+
+/* Unit toggle */
+.unit-toggle {
+    display: inline-flex;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.unit-toggle a {
+    text-decoration: none;
+    padding: 8px 16px;
+    color: #333;
+    background-color: #f0f0f0;
+    transition: background-color 0.2s;
+}
+
+.unit-toggle a.active {
+    background-color: #333;
+    color: #fff;
+}
+
+.unit-toggle a:not(.active):hover {
+    background-color: #ddd;
+}

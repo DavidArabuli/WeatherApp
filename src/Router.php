@@ -39,7 +39,11 @@ class Router
                 return;
             }
         }
-
+        var_dump($_SERVER['REQUEST_METHOD'], $path);
+        die;
+        echo '<pre>';
+        var_dump($this->routes);
+        echo '</pre>';
         http_response_code(404);
         echo "404 Not Found";
     }
