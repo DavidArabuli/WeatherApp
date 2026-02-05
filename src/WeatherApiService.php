@@ -1,14 +1,16 @@
 <?php
 
-require_once __DIR__ . '/../env.php';
-
 class WeatherApiService
 {
     private $apiKey;
 
-    public function __construct($apiKey)
+    public function __construct()
     {
-        $this->apiKey = $apiKey;
+        $this->apiKey = getenv('API_KEY');
+
+        if (!$this->apiKey) {
+            throw new RuntimeException('API_KEY is not set');
+        }
     }
 
     public function getWeatherByCityName(string $cityName, string $unit = 'metric'): array

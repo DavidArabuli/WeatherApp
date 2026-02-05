@@ -9,7 +9,7 @@ require_once __DIR__ . '/../src/WeatherApiService.php';
 
 $pdo = Database::getConnection();
 $cityModel = new City($pdo);
-$weatherService = new WeatherApiService($apiKey);
+$weatherService = new WeatherApiService();
 $router = new Router();
 $controller = new CityController($cityModel, $weatherService);
 

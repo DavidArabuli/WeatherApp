@@ -43,3 +43,15 @@ Maršruti izmanto pilsētu ID, nevis pilsētu nosaukumus URL adresēs
 Aplikācija vairs neļauj saglabāt datubāzē neeksistējošas pilsētas
 
 Docker + Nginx boilerplate
+
+--
+
+Iespēja pārslēgt mērvienības (metriskās / imperiālās) arī pilsētas detalizētajā skatā
+
+Uzlaboti skati, HTML struktūra un CSS noformējums
+
+Koda sakopšana un novecojušo risinājumu noņemšana
+
+Docker konfigurācijas faili un sagatavošana izvietošanai (deployment)
+
+Aplikācijas izvietošana VPS vidē
