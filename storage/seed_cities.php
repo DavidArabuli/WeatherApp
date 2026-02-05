@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/../bootstrap.php';
 require_once __DIR__ . '/../src/Database.php';
 
 $pdo = Database::getConnection();
@@ -23,7 +24,7 @@ $stmt = $pdo->prepare(
      VALUES (:name)"
 );
 
-foreach ($cities as [$name, $country]) {
+foreach ($cities as [$name]) {
     $stmt->execute([
         ':name'    => $name,
     ]);

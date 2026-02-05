@@ -13,7 +13,7 @@ services:
   nginx:
     image: nginx:alpine
     ports:
-      - "80:80"
+      - "8000:80"
     volumes:
       - .:/var/www/html
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
@@ -28,7 +28,8 @@ services:
       POSTGRES_PASSWORD: weather
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./database/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+      - ./docker:/docker-entrypoint-initdb.d
+
 
 volumes:
   pgdata:

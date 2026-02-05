@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../env.php';
+require_once __DIR__ . '/../bootstrap.php';
 require_once __DIR__ . '/../src/Router.php';
 require_once __DIR__ . '/../src/Controller/CityController.php';
 require_once __DIR__ . '/../src/Database.php';
@@ -19,10 +19,3 @@ $router->post('/cities', [$controller, 'store']);
 $router->post('/cities/{id}/delete', [$controller, 'destroy']);
 
 $router->dispatch($_SERVER['REQUEST_URI']);
-
-// function dd($data)
-// {
-//     echo '<pre>';
-//     die(var_dump($data));
-//     echo '</pre>';
-// }

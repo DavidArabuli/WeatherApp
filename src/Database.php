@@ -7,13 +7,28 @@ class Database
     public static function getConnection(): PDO
     {
         if (self::$pdo === null) {
-            $DBconfig = require __DIR__ . '/../env.php';
+            $host = getenv('DB_HOST');
+            $port = getenv('DB_PORT');
+            $db   = getenv('DB_NAME');
+            $user = getenv('DB_USER');
+            $pass = getenv('DB_PASS');
 
-            $dsn = "pgsql:host={$DBconfig['host']};port={$DBconfig['port']};dbname={$DBconfig['db']}";
-            self::$pdo = new PDO($dsn, $DBconfig['user'], $DBconfig['password'], [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-            ]);
+            if (!$host || !$db || !$user) {
+                throw new RuntimeException('Database environment variables are not set');
+            }
+
+            $dsn = "pgsql:host={$host};port={$port};dbname={$db}";
+
+            self::$pdo = new PDO(
+                $dsn,
+                $user,
+                $pass,
+                [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                ]
+            );
         }
+
         return self::$pdo;
     }
 }
